@@ -256,6 +256,279 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/18/invalidate-Fucking-code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Broderick Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="局外人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/18/invalidate-Fucking-code/" itemprop="url">invalidate Fucking code</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-18T16:49:32+08:00">
+                2017-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>调用invalidate方法，最终会调用自己的onDraw方法进行重绘</strong></p>
+<p>调用invalidate会调用view的invalidate</p>
+<ul>
+<li>首先判断视图是否有效</li>
+<li>然后再继续判断是否跳过重绘</li>
+<li>最终会调用父类的invalidateChild(this, damage); 方法</li>
+</ul>
+<h2 id="关键方法"><a href="#关键方法" class="headerlink" title="关键方法"></a>关键方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p.invalidateChild(this, damage);</div></pre></td></tr></table></figure>
+<p>就调用viewGroup的invalidateChild方法</p>
+<p>不断调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">do &#123;</div><div class="line">                parent = parent.invalidateChildInParent(location, dirty);</div><div class="line">                if (view != null) &#123;</div><div class="line">                    // Account for transform on current parent</div><div class="line">                    Matrix m = view.getMatrix();</div><div class="line">                    if (!m.isIdentity()) &#123;</div><div class="line">                        RectF boundingRect = attachInfo.mTmpTransformRect;</div><div class="line">                        boundingRect.set(dirty);</div><div class="line">                        m.mapRect(boundingRect);</div><div class="line">                        dirty.set((int) Math.floor(boundingRect.left),</div><div class="line">                                (int) Math.floor(boundingRect.top),</div><div class="line">                                (int) Math.ceil(boundingRect.right),</div><div class="line">                                (int) Math.ceil(boundingRect.bottom));</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125; while (parent != null);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>不断的do while循环，直到循环到最外层view的invalidateChildInParent方法。<br>里面的parent是调用的ViewGroup的invalidateChildInParent方法<br>最外层是调用ViewRootImpl的invalidateChildInParent方法</p>
+</blockquote>
+<h2 id="ViewRootImpl类中invalidateChildInParent方法分析"><a href="#ViewRootImpl类中invalidateChildInParent方法分析" class="headerlink" title="ViewRootImpl类中invalidateChildInParent方法分析"></a>ViewRootImpl类中invalidateChildInParent方法分析</h2><hr>
+<p>invalidateChildInParent -&gt; invalidateRectOnScreen -&gt; scheduleTraversals -&gt; postCallback/mTraversalRunnable  -&gt; doTraversal -&gt; performTraversals</p>
+<hr>
+<p><strong>==在View的绘制流程中performTraversals方法是非常重要的==</strong></p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 测量</li>
+</ul>
+<p>performMeasure</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 摆放</li>
+</ul>
+<p>performLayout</p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> 绘制</li>
+</ul>
+<p>performDraw</p>
+<p>最后调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mView.draw(canvas);</div></pre></td></tr></table></figure>
+<p>==mView是最外面的view，不是调用invalidate方法的那个view，<br>又调到view的ondraw中，有有了view的绘制流程==</p>
+<h3 id="invalidate流程"><a href="#invalidate流程" class="headerlink" title="invalidate流程"></a>invalidate流程</h3><p><strong>==一路往上跑，跑到顶层视图（最外层）调用draw方法，draw里面有dispatchDraw绘制children，一路往下画，最终画到当前调用invalidate方法的view的ondraw方法。==</strong></p>
+<p>invalidate是牵连着整个layout布局中的所有view</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/18/code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Broderick Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="局外人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/18/code/" itemprop="url">code</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-18T16:48:49+08:00">
+                2017-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/18/Activity启动流程源码分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -436,7 +709,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
