@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="ActivityThread通过调用handleLaunchActivity启动我们的目标activity 第一步 创建Activity，执行onCreate()ActivityThread中执行performLaunchActivity方法。1Activity a = performLaunchActivity(r, customIntent); 1234567891011121314Activ">
+<meta name="description" content="ActivityThread通过调用handleLaunchActivity启动我们的目标activity 第一步 创建Activity，执行onCreate()ActivityThread中执行performLaunchActivity方法。 1Activity a = performLaunchActivity(r, customIntent); 1234567891011121314Acti">
 <meta property="og:type" content="article">
-<meta property="og:title" content="局外人">
-<meta property="og:url" content="http://yoursite.com/2017/08/18/Activity启动流程，源码分析/index.html">
+<meta property="og:title" content="Activity ��������Դ������">
+<meta property="og:url" content="http://yoursite.com/2017/08/18/Activity启动流程源码分析/index.html">
 <meta property="og:site_name" content="局外人">
-<meta property="og:description" content="ActivityThread通过调用handleLaunchActivity启动我们的目标activity 第一步 创建Activity，执行onCreate()ActivityThread中执行performLaunchActivity方法。1Activity a = performLaunchActivity(r, customIntent); 1234567891011121314Activ">
+<meta property="og:description" content="ActivityThread通过调用handleLaunchActivity启动我们的目标activity 第一步 创建Activity，执行onCreate()ActivityThread中执行performLaunchActivity方法。 1Activity a = performLaunchActivity(r, customIntent); 1234567891011121314Acti">
 <meta property="og:image" content="http://img2.imgtn.bdimg.com/it/u=2671380760,1371402298&fm=26&gp=0.jpg">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2138897-8904c77260d0f09f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-08-18T08:24:45.000Z">
+<meta property="og:updated_time" content="2017-08-18T08:26:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="局外人">
-<meta name="twitter:description" content="ActivityThread通过调用handleLaunchActivity启动我们的目标activity 第一步 创建Activity，执行onCreate()ActivityThread中执行performLaunchActivity方法。1Activity a = performLaunchActivity(r, customIntent); 1234567891011121314Activ">
+<meta name="twitter:title" content="Activity ��������Դ������">
+<meta name="twitter:description" content="ActivityThread通过调用handleLaunchActivity启动我们的目标activity 第一步 创建Activity，执行onCreate()ActivityThread中执行performLaunchActivity方法。 1Activity a = performLaunchActivity(r, customIntent); 1234567891011121314Acti">
 <meta name="twitter:image" content="http://img2.imgtn.bdimg.com/it/u=2671380760,1371402298&fm=26&gp=0.jpg">
 
 
@@ -135,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/18/Activity启动流程，源码分析/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/18/Activity启动流程源码分析/"/>
 
 
 
 
 
-  <title> | 局外人</title>
+  <title>Activity ��������Դ������ | 局外人</title>
   
 
 
@@ -258,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/18/Activity启动流程，源码分析/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/18/Activity启动流程源码分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Broderick Wang">
@@ -275,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">Activity ��������Դ������</h1>
         
 
         <div class="post-meta">
@@ -287,7 +287,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-18T16:24:45+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-18T16:26:04+08:00">
                 2017-08-18
               </time>
             
@@ -326,7 +326,8 @@
 
       
         <p><strong>ActivityThread通过调用handleLaunchActivity启动我们的目标activity</strong></p>
-<h3 id="第一步-创建Activity，执行onCreate"><a href="#第一步-创建Activity，执行onCreate" class="headerlink" title="第一步 创建Activity，执行onCreate()"></a>第一步 创建Activity，执行onCreate()</h3><p><strong>ActivityThread中执行performLaunchActivity方法。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Activity a = performLaunchActivity(r, customIntent);</div></pre></td></tr></table></figure></p>
+<h3 id="第一步-创建Activity，执行onCreate"><a href="#第一步-创建Activity，执行onCreate" class="headerlink" title="第一步 创建Activity，执行onCreate()"></a>第一步 创建Activity，执行onCreate()</h3><p><strong>ActivityThread中执行performLaunchActivity方法。</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Activity a = performLaunchActivity(r, customIntent);</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Activity activity = null;</div><div class="line">       try &#123;</div><div class="line">           java.lang.ClassLoader cl = r.packageInfo.getClassLoader();</div><div class="line">           //通过newInstance来创建一个activity</div><div class="line">           activity = mInstrumentation.newActivity(</div><div class="line">                   cl, component.getClassName(), r.intent);</div><div class="line">           ...</div><div class="line">       &#125; catch (Exception e) &#123;</div><div class="line">           if (!mInstrumentation.onException(activity, e)) &#123;</div><div class="line">               throw new RuntimeException(</div><div class="line">                   &quot;Unable to instantiate activity &quot; + component</div><div class="line">                   + &quot;: &quot; + e.toString(), e);</div><div class="line">           &#125;</div><div class="line">       &#125;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">//创建context</div><div class="line">if (activity != null) &#123;</div><div class="line">                //创建context</div><div class="line">                Context appContext = createBaseContextForActivity(r, activity);</div><div class="line">                CharSequence title = r.activityInfo.loadLabel(appContext.getPackageManager());</div><div class="line">                Configuration config = new Configuration(mCompatConfiguration);</div><div class="line">               //...</div><div class="line">               //执行activity的onCreate方法</div><div class="line">                if (r.isPersistable()) &#123;</div><div class="line">                    mInstrumentation.callActivityOnCreate(activity, r.state, r.persistentState);</div><div class="line">                &#125; else &#123;</div><div class="line">                    mInstrumentation.callActivityOnCreate(activity, r.state);</div><div class="line">                &#125;</div><div class="line">                //...</div><div class="line">            &#125;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public void callActivityOnCreate(Activity activity, Bundle icicle) &#123;</div><div class="line">        prePerformCreate(activity);</div><div class="line">        activity.performCreate(icicle);</div><div class="line">        postPerformCreate(activity);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
@@ -338,7 +339,8 @@
 <blockquote>
 <p>WindowManager是连接Activity和View的桥梁</p>
 </blockquote>
-<p>WindowManager是个接口，其实现类是WindowManagerImpl<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public void addView(@NonNull View view, @NonNull ViewGroup.LayoutParams params) &#123;</div><div class="line">        applyDefaultToken(params);</div><div class="line">        //会调用global的addView方法</div><div class="line">        mGlobal.addView(view, params, mContext.getDisplay(), mParentWindow);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>WindowManager是个接口，其实现类是WindowManagerImpl</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public void addView(@NonNull View view, @NonNull ViewGroup.LayoutParams params) &#123;</div><div class="line">        applyDefaultToken(params);</div><div class="line">        //会调用global的addView方法</div><div class="line">        mGlobal.addView(view, params, mContext.getDisplay(), mParentWindow);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p>WindowManagerGlobal才是真是new出了ViewRootImpl<br><strong>来看WindowManagerGlobal的addView方法</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">public void addView(View view, ViewGroup.LayoutParams params,</div><div class="line">            Display display, Window parentWindow) &#123;</div><div class="line">       //...</div><div class="line">        ViewRootImpl root;</div><div class="line">        View panelParentView = null;</div><div class="line"></div><div class="line">        synchronized (mLock) &#123;</div><div class="line">            //...</div><div class="line">            //***关键点，new一个ViewRoot，持有ViewRootImpl的引用</div><div class="line">            root = new ViewRootImpl(view.getContext(), display);</div><div class="line"></div><div class="line">            view.setLayoutParams(wparams);</div><div class="line">            //添加缓存</div><div class="line">            mViews.add(view);</div><div class="line">            mRoots.add(root);</div><div class="line">            mParams.add(wparams);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        // do this last because it fires off messages to start doing things</div><div class="line">        try &#123;</div><div class="line">            //这里才是到真正要显示View布局的地方，也是在这里界面要和用户见面了！！！</div><div class="line">            root.setView(view, wparams, panelParentView);</div><div class="line">        &#125; catch (RuntimeException e) &#123;</div><div class="line">            // BadTokenException or InvalidDisplayException, clean up.</div><div class="line">            synchronized (mLock) &#123;</div><div class="line">                final int index = findViewLocked(view, false);</div><div class="line">                if (index &gt;= 0) &#123;</div><div class="line">                    removeViewLocked(index, true);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            throw e;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <p><strong>继续往下看RootViewImpl的setView()方法</strong></p>
@@ -375,8 +377,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/18/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2017/08/18/Activity启动流程，源码分析/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -384,10 +386,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/18/Activity启动流程源码分析/" rel="prev" title="Activity ��������Դ������">
-                Activity ��������Դ������ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
