@@ -12,6 +12,8 @@
     
     <title>
         
+            setContent源码分析 | 
+        
         局外人
     </title>
 
@@ -63,15 +65,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="局外人">
+    <meta property="og:title" content="setContent源码分析 | 局外人">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="一个人的世界，可以侃大山">
     
 
     
+        <meta property="article:published_time" content="8月 21, 2017" />
+        <meta property="article:modified_time" content="8月 21, 2017" />
+    
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="局外人">
+    <meta name="twitter:title" content="setContent源码分析 | 局外人">
     <meta name="twitter:description" content="一个人的世界，可以侃大山">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -79,35 +84,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com" />
+        <link rel="canonical" href="http://yoursite.com/2017/08/21/setContent源码分析/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
+
+
 <script type="application/ld+json">
 {
-    "@context": "http://schema.org",
-    "@type": "Website",
+    "@context": "https://schema.org",
+    "@type": "Article",
     "publisher": {
         "@type": "Organization",
         "name": "局外人",
         "logo": "/img/favicon.png"
     },
-    "url": "http://yoursite.com/index.html",
-    "image": {
-        "@type": "ImageObject",
-        "url": "/img/favicon.png"
+    "author": {
+        "@type": "Person",
+        "name": "Broderick Wang",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/favicon.png"
+        },
+        "description": "Hi, nice to meet you"
     },
+    "headline": "setContent源码分析",
+    "url": "http://yoursite.com/2017/08/21/setContent源码分析/index.html",
+    "datePublished": "8月 21, 2017",
+    "dateModified": "8月 21, 2017",
+    "description": "一个人的世界，可以侃大山",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "http://yoursite.com"
-    },
-    "description": "一个人的世界，可以侃大山"
+    }
 }
 </script>
-
-
 
 
     
@@ -366,25 +379,29 @@
 
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
     
 
-    <!-- Normal Post -->
-    
-        
-            
-            
-                <!-- Isolation Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--5dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post_entry Header -->
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+
+
+    <!-- Isolation Post Header -->
+    <!-- Post thumbnail -->
     
         <!-- Post Header Info -->
-        <div class="post_entry-header_info without-thumbnail">
+        <div class="post-header_info without-thumbnail">
             <!-- Author Avatar & Name -->
             <img src="/img/sj.png" class="avatar-img" width="44px" height="44px" alt="Broderick Wang's avatar">
             <span class="name-span">Broderick Wang</span>
@@ -395,229 +412,69 @@
     
         </div>
 
-    <!-- Post_entry Content -->
-    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
-        <!-- Post Title -->
-        <p class="post_entry-title">
-            <a href="/2017/08/21/setContent源码分析/">setContent源码分析</a>
-        </p>
 
-        <!-- Post Excerpt -->
-        <p class="post_entry-excerpt">
-            
-                
-            
-            &nbsp;&nbsp;&nbsp;
-            <span>
-                <a href="/2017/08/21/setContent源码分析/" target="_self">阅读全文</a>
-            </span>
-        </p>
 
-        <!-- Post Tags -->
-        
-    </div>
+                
 
-    <!-- Post_entry Footer -->
-    <div class="post_entry-footer">
-        <div class="post_entry-footer-border"></div>
-        <div class="post_entry-footer-info">
-            <div class="post_entry-footer-date">
-                8月 21, 2017
-            </div>
-            <div class="post_entry-footer-comment">
-                
-                
-            </div>
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+
+    
+        <div class="post-content_wrapper">
+            <p class="post-title">
+                setContent源码分析
+            </p>
+            <h2 id="追踪到Activity的setContentView"><a href="#追踪到Activity的setContentView" class="headerlink" title="追踪到Activity的setContentView"></a>追踪到Activity的setContentView</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public void setContentView(@LayoutRes int layoutResID) &#123;</div><div class="line">    getWindow().setContentView(layoutResID);</div><div class="line">    initWindowDecorActionBar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>getWindow()返回PhoneWindow的实例 PhoneWindow 继承Window</p>
+<hr>
+<h2 id="PhoneWindow的setContentView源码："><a href="#PhoneWindow的setContentView源码：" class="headerlink" title="PhoneWindow的setContentView源码："></a>PhoneWindow的setContentView源码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public void setContentView(int layoutResID) &#123;</div><div class="line">    </div><div class="line">//如果父布局为空，初始化父布局</div><div class="line">if (mContentParent == null) &#123;</div><div class="line">    installDecor();</div><div class="line">&#125; else if (!hasFeature(FEATURE_CONTENT_TRANSITIONS)) &#123;</div><div class="line">    mContentParent.removeAllViews();</div><div class="line">&#125;</div><div class="line"></div><div class="line">if (hasFeature(FEATURE_CONTENT_TRANSITIONS)) &#123;</div><div class="line">    final Scene newScene = Scene.getSceneForLayout(mContentParent, layoutResID,</div><div class="line">            getContext());</div><div class="line">    transitionTo(newScene);</div><div class="line">&#125; else &#123;</div><div class="line">    //把自己的布局即传入的layoutResID 加载到父布局中（即android.id.content线性布局）</div><div class="line">    mLayoutInflater.inflate(layoutResID, mContentParent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="installDecor方法："><a href="#installDecor方法：" class="headerlink" title="installDecor方法："></a>installDecor方法：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (mContentParent == null) &#123;</div><div class="line">    mContentParent = generateLayout(mDecor);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong> mDecor 就是一个FrameLayout</strong></p>
+<h2 id="generateLayout方法："><a href="#generateLayout方法：" class="headerlink" title="generateLayout方法："></a>generateLayout方法：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ViewGroup contentParent = (ViewGroup)findViewById(ID_ANDROID_CONTENT);</div><div class="line">if (contentParent == null) &#123;</div><div class="line">    throw new RuntimeException(&quot;Window couldn&apos;t find content container view&quot;);</div><div class="line">&#125;</div><div class="line">return contentParent;</div></pre></td></tr></table></figure>
+<p>最后加载的就是public static final int ID_ANDROID_CONTENT = com.android.internal.R.id.content; 布局 源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout </div><div class="line">xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;     </div><div class="line">android:id=&quot;@+id/content&quot;    </div><div class="line">android:orientation=&quot;vertical&quot;    </div><div class="line">android:layout_width=&quot;match_parent&quot;     </div><div class="line">android:layout_height=&quot;wrap_content&quot;    </div><div class="line">android:background=&quot;@android:drawable/edit_text&quot;    android:divider=&quot;@android:drawable/divider_horizontal_textfield&quot;   </div><div class="line">android:addStatesFromChildren=&quot;true&quot;&gt;</div><div class="line"></div><div class="line">    &lt;LinearLayout </div><div class="line">    android:id=&quot;@+id/container&quot;        </div><div class="line">    android:orientation=&quot;vertical&quot;        </div><div class="line">    android:layout_width=&quot;match_parent&quot;         </div><div class="line">    android:layout_height=&quot;wrap_content&quot;        </div><div class="line">    android:paddingEnd=&quot;0dip&quot;    /&gt;</div><div class="line"></div><div class="line">    &lt;AutoCompleteTextView </div><div class="line">    android:id=&quot;@+id/edit&quot;        </div><div class="line">    android:completionThreshold=&quot;1&quot;        </div><div class="line">    android:layout_width=&quot;match_parent&quot;        </div><div class="line">    android:layout_height=&quot;wrap_content&quot;        </div><div class="line">    android:singleLine=&quot;true&quot;        </div><div class="line">    android:layout_gravity=&quot;center_vertical&quot;    /&gt;   </div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
+<p>就是一个LinearLayout布局</p>
+
         </div>
-    </div>
+    
 </div>
 
-            
-        
-    
-        
-            
-            
-                <!-- Isolation Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--5dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post_entry Header -->
-    
-        <!-- Post Header Info -->
-        <div class="post_entry-header_info without-thumbnail">
-            <!-- Author Avatar & Name -->
-            <img src="/img/sj.png" class="avatar-img" width="44px" height="44px" alt="Broderick Wang's avatar">
-            <span class="name-span">Broderick Wang</span>
-        </div>
 
-        <!-- Null Thumbnail -->
-        <div class="post_thumbnail-null">
-    
-        </div>
-
-    <!-- Post_entry Content -->
-    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
-        <!-- Post Title -->
-        <p class="post_entry-title">
-            <a href="/2017/08/21/Activity-Lauch-Process/">Activity Lauch Process</a>
-        </p>
-
-        <!-- Post Excerpt -->
-        <p class="post_entry-excerpt">
-            
-                ActivityThread通过调用handleLaunchActivity启动我们的目标activity...
-            
-            &nbsp;&nbsp;&nbsp;
-            <span>
-                <a href="/2017/08/21/Activity-Lauch-Process/" target="_self">阅读全文</a>
-            </span>
-        </p>
-
-        <!-- Post Tags -->
-        
-    </div>
-
-    <!-- Post_entry Footer -->
-    <div class="post_entry-footer">
-        <div class="post_entry-footer-border"></div>
-        <div class="post_entry-footer-info">
-            <div class="post_entry-footer-date">
-                8月 21, 2017
-            </div>
-            <div class="post_entry-footer-comment">
                 
+                    <!-- Paradox Post Info -->
+                    
+                
+
+                <!-- Post Comments -->
+                
+                    
                 
             </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/08/21/Activity-Lauch-Process/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
         </div>
     </div>
-</div>
 
-            
-        
-    
-        
-            
-            
-                <!-- Isolation Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--5dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post_entry Header -->
-    
-        <!-- Post Header Info -->
-        <div class="post_entry-header_info without-thumbnail">
-            <!-- Author Avatar & Name -->
-            <img src="/img/sj.png" class="avatar-img" width="44px" height="44px" alt="Broderick Wang's avatar">
-            <span class="name-span">Broderick Wang</span>
-        </div>
-
-        <!-- Null Thumbnail -->
-        <div class="post_thumbnail-null">
-    
-        </div>
-
-    <!-- Post_entry Content -->
-    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
-        <!-- Post Title -->
-        <p class="post_entry-title">
-            <a href="/2017/08/21/View-Event-Transform/">View Event Transform</a>
-        </p>
-
-        <!-- Post Excerpt -->
-        <p class="post_entry-excerpt">
-            
-                
-            
-            &nbsp;&nbsp;&nbsp;
-            <span>
-                <a href="/2017/08/21/View-Event-Transform/" target="_self">阅读全文</a>
-            </span>
-        </p>
-
-        <!-- Post Tags -->
-        
-    </div>
-
-    <!-- Post_entry Footer -->
-    <div class="post_entry-footer">
-        <div class="post_entry-footer-border"></div>
-        <div class="post_entry-footer-info">
-            <div class="post_entry-footer-date">
-                8月 21, 2017
-            </div>
-            <div class="post_entry-footer-comment">
-                
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-            
-        
-    
-        
-            
-            
-                <!-- Isolation Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--5dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post_entry Header -->
-    
-        <!-- Post Header Info -->
-        <div class="post_entry-header_info without-thumbnail">
-            <!-- Author Avatar & Name -->
-            <img src="/img/sj.png" class="avatar-img" width="44px" height="44px" alt="Broderick Wang's avatar">
-            <span class="name-span">Broderick Wang</span>
-        </div>
-
-        <!-- Null Thumbnail -->
-        <div class="post_thumbnail-null">
-    
-        </div>
-
-    <!-- Post_entry Content -->
-    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
-        <!-- Post Title -->
-        <p class="post_entry-title">
-            <a href="/2017/08/18/invalidate-Fucking-code/">invalidate Fucking code</a>
-        </p>
-
-        <!-- Post Excerpt -->
-        <p class="post_entry-excerpt">
-            
-                调用invalidate方法，最终会调用自己的onDraw方法进行重绘
-调用invalidate会调...
-            
-            &nbsp;&nbsp;&nbsp;
-            <span>
-                <a href="/2017/08/18/invalidate-Fucking-code/" target="_self">阅读全文</a>
-            </span>
-        </p>
-
-        <!-- Post Tags -->
-        
-    </div>
-
-    <!-- Post_entry Footer -->
-    <div class="post_entry-footer">
-        <div class="post_entry-footer-border"></div>
-        <div class="post_entry-footer-info">
-            <div class="post_entry-footer-date">
-                8月 18, 2017
-            </div>
-            <div class="post_entry-footer-comment">
-                
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-            
-        
-    
-
-    
-
-    
-</div>
 
 
                     
@@ -672,12 +529,6 @@
 
 
 
-
-    <!-- Swiftye -->
-    
-
-    <!-- Local Search-->
-    
 
 
 <!-- UC Browser Compatible -->
