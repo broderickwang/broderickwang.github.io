@@ -12,7 +12,7 @@
     
     <title>
         
-            Activity Lauch Process | 
+            Looper,Handler,Message源码分析 | 
         
         Mars World
     </title>
@@ -65,18 +65,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Activity Lauch Process | Mars World">
+    <meta property="og:title" content="Looper,Handler,Message源码分析 | Mars World">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="">
     
 
     
-        <meta property="article:published_time" content="8月 21, 2017" />
-        <meta property="article:modified_time" content="8月 21, 2017" />
+        <meta property="article:published_time" content="8月 22, 2017" />
+        <meta property="article:modified_time" content="8月 22, 2017" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="Activity Lauch Process | Mars World">
+    <meta name="twitter:title" content="Looper,Handler,Message源码分析 | Mars World">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -84,7 +84,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/2017/08/21/Activity-Lauch-Process/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2017/08/22/Looper,Handler,Message源码分析/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -110,10 +110,10 @@
         },
         "description": "Hi, nice to meet you"
     },
-    "headline": "Activity Lauch Process",
-    "url": "http://yoursite.com/2017/08/21/Activity-Lauch-Process/index.html",
-    "datePublished": "8月 21, 2017",
-    "dateModified": "8月 21, 2017",
+    "headline": "Looper,Handler,Message源码分析",
+    "url": "http://yoursite.com/2017/08/22/Looper,Handler,Message源码分析/index.html",
+    "datePublished": "8月 22, 2017",
+    "dateModified": "8月 22, 2017",
     "description": "",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -335,7 +335,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一步-创建Activity，执行onCreate"><span class="post-toc-number">1.</span> <span class="post-toc-text">第一步 创建Activity，执行onCreate()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第二步-显示Activity，执行onResume"><span class="post-toc-number">2.</span> <span class="post-toc-text">第二步 显示Activity，执行onResume()</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#handleResumeActivity方法源码阅读"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">handleResumeActivity方法源码阅读</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第三步-界面已显示，该干嘛干嘛，主要的是第二步"><span class="post-toc-number">3.</span> <span class="post-toc-text">第三步 界面已显示，该干嘛干嘛，主要的是第二步</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Looper-Handler-Message源码分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">Looper,Handler,Message源码分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Looper源码分析"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Looper源码分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Looper初始化"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">Looper初始化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Looper使用"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">Looper使用</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Handler源码分析"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Handler源码分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#dispatchMessage源码"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">dispatchMessage源码</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Message源码分析"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Message源码分析</span></a></li></ol></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -373,7 +373,7 @@
         
     
             <p class="article-headline-p">
-                Activity Lauch Process
+                Looper,Handler,Message源码分析
             </p>
         </div>
 
@@ -392,7 +392,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Broderick Wang</strong>
-        <span>8月 21, 2017</span>
+        <span>8月 22, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -432,7 +432,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Activity Lauch Process&url=http://yoursite.com/2017/08/21/Activity-Lauch-Process/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Looper,Handler,Message源码分析&url=http://yoursite.com/2017/08/22/Looper,Handler,Message源码分析/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -447,7 +447,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/21/Activity-Lauch-Process/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/22/Looper,Handler,Message源码分析/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -459,7 +459,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Mars World&title=Activity Lauch Process&summary=&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2017/08/21/Activity-Lauch-Process/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Mars World&title=Looper,Handler,Message源码分析&summary=&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2017/08/22/Looper,Handler,Message源码分析/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -477,34 +477,99 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p><strong>ActivityThread通过调用handleLaunchActivity启动我们的目标activity</strong></p>
-<h3 id="第一步-创建Activity，执行onCreate"><a href="#第一步-创建Activity，执行onCreate" class="headerlink" title="第一步 创建Activity，执行onCreate()"></a>第一步 创建Activity，执行onCreate()</h3><p><strong>ActivityThread中执行performLaunchActivity方法。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Activity a = performLaunchActivity(r, customIntent);</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">Activity activity = null;</div><div class="line">       try &#123;</div><div class="line">           java.lang.ClassLoader cl = r.packageInfo.getClassLoader();</div><div class="line">           //通过newInstance来创建一个activity</div><div class="line">           activity = mInstrumentation.newActivity(</div><div class="line">                   cl, component.getClassName(), r.intent);</div><div class="line">           ...</div><div class="line">       &#125; catch (Exception e) &#123;</div><div class="line">           if (!mInstrumentation.onException(activity, e)) &#123;</div><div class="line">               throw new RuntimeException(</div><div class="line">                   &quot;Unable to instantiate activity &quot; + component</div><div class="line">                   + &quot;: &quot; + e.toString(), e);</div><div class="line">           &#125;</div><div class="line">       &#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">//创建context</div><div class="line">if (activity != null) &#123;</div><div class="line">                //创建context</div><div class="line">                Context appContext = createBaseContextForActivity(r, activity);</div><div class="line">                CharSequence title = r.activityInfo.loadLabel(appContext.getPackageManager());</div><div class="line">                Configuration config = new Configuration(mCompatConfiguration);</div><div class="line">               //...</div><div class="line">               //执行activity的onCreate方法</div><div class="line">                if (r.isPersistable()) &#123;</div><div class="line">                    mInstrumentation.callActivityOnCreate(activity, r.state, r.persistentState);</div><div class="line">                &#125; else &#123;</div><div class="line">                    mInstrumentation.callActivityOnCreate(activity, r.state);</div><div class="line">                &#125;</div><div class="line">                //...</div><div class="line">            &#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public void callActivityOnCreate(Activity activity, Bundle icicle) &#123;</div><div class="line">        prePerformCreate(activity);</div><div class="line">        activity.performCreate(icicle);</div><div class="line">        postPerformCreate(activity);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
-<p><strong>转到Activity类中执行onCreate方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">final void performCreate(Bundle icicle) &#123;</div><div class="line">        restoreHasCurrentPermissionRequest(icicle);</div><div class="line">        //调用我们自己写onCreate方法</div><div class="line">        onCreate(icicle);</div><div class="line">        mActivityTransitionState.readState(icicle);</div><div class="line">        performCreateCommon();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<h3 id="第二步-显示Activity，执行onResume"><a href="#第二步-显示Activity，执行onResume" class="headerlink" title="第二步 显示Activity，执行onResume()"></a>第二步 显示Activity，执行onResume()</h3><p>在ActivityThread中首先判断第一步是否创建了Activity，如果创建了执行onResume</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">if (a != null) &#123;</div><div class="line">            r.createdConfig = new Configuration(mConfiguration);</div><div class="line">            reportSizeConfigurations(r);</div><div class="line">            Bundle oldState = r.state;</div><div class="line">            handleResumeActivity(r.token, false, r.isForward,</div><div class="line">                    !r.activity.mFinished &amp;&amp; !r.startsNotResumed, r.lastProcessedSeq, reason);</div><div class="line">            //...</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
-<h4 id="handleResumeActivity方法源码阅读"><a href="#handleResumeActivity方法源码阅读" class="headerlink" title="handleResumeActivity方法源码阅读"></a>handleResumeActivity方法源码阅读</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">final void handleResumeActivity(IBinder token,</div><div class="line">           boolean clearHide, boolean isForward, boolean reallyResume, int seq, String reason) &#123;</div><div class="line">       ActivityClientRecord r = mActivities.get(token);</div><div class="line">       //...</div><div class="line"></div><div class="line">       //</div><div class="line">       r = performResumeActivity(token, clearHide, reason);</div><div class="line"></div><div class="line">       if (r != null) &#123;</div><div class="line">           //...</div><div class="line">           if (r.window == null &amp;&amp; !a.mFinished &amp;&amp; willBeVisible) &#123;</div><div class="line">               r.window = r.activity.getWindow();</div><div class="line">               View decor = r.window.getDecorView();</div><div class="line">               decor.setVisibility(View.INVISIBLE);</div><div class="line">               ViewManager wm = a.getWindowManager();</div><div class="line">               WindowManager.LayoutParams l = r.window.getAttributes();</div><div class="line">               a.mDecor = decor;</div><div class="line">               l.type = WindowManager.LayoutParams.TYPE_BASE_APPLICATION;</div><div class="line">               l.softInputMode |= forwardBit;</div><div class="line">               if (r.mPreserveWindow) &#123;</div><div class="line">                   a.mWindowAdded = true;</div><div class="line">                   r.mPreserveWindow = false;</div><div class="line">                   // Normally the ViewRoot sets up callbacks with the Activity</div><div class="line">                   // in addView-&gt;ViewRootImpl#setView. If we are instead reusing</div><div class="line">                   // the decor view we have to notify the view root that the</div><div class="line">                   // callbacks may have changed.</div><div class="line">                   ViewRootImpl impl = decor.getViewRootImpl();</div><div class="line">                   if (impl != null) &#123;</div><div class="line">                       impl.notifyChildRebuilt();</div><div class="line">                   &#125;</div><div class="line">               &#125;</div><div class="line">               if (a.mVisibleFromClient &amp;&amp; !a.mWindowAdded) &#123;</div><div class="line">                   a.mWindowAdded = true;</div><div class="line">                   //***** 这是关键代码 WindowManager的addView方法</div><div class="line">                   wm.addView(decor, l);</div><div class="line">               &#125;</div><div class="line"></div><div class="line">          //...</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+        <h1 id="Looper-Handler-Message源码分析"><a href="#Looper-Handler-Message源码分析" class="headerlink" title="Looper,Handler,Message源码分析"></a>Looper,Handler,Message源码分析</h1><p>Handler与Message几乎是每一个Android开发人员必须用的东西，如果你现在没有用到，我相信你将来也会用的，如果你说你将来也不会用到，请点叉号或者go back！</p>
+<p>有人说，进阶的途径只有一个，那就是：<u><strong>READ THE FUCKING CODE！</strong></u></p>
+<p>是的，不错这是一个好的途径。</p>
+<p>关系：</p>
 <blockquote>
-<p>WindowManager是连接Activity和View的桥梁</p>
+<p>Looper可以理解为消息循环器，是不断的从自己持有的消息队列中取出消息，来发送消息给Handler来处理消息</p>
+<p>Handler可以理解为一个消息处理器，就是不断处理Looper给发送过来的消息</p>
+<p>Message则是一个消息的载体，存储一个消息本身的信息，同时他是一个链表结构，存储有下一个Message的引用</p>
 </blockquote>
-<p>WindowManager是个接口，其实现类是WindowManagerImpl</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public void addView(@NonNull View view, @NonNull ViewGroup.LayoutParams params) &#123;</div><div class="line">        applyDefaultToken(params);</div><div class="line">        //会调用global的addView方法</div><div class="line">        mGlobal.addView(view, params, mContext.getDisplay(), mParentWindow);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>WindowManagerGlobal才是真是new出了ViewRootImpl<br><strong>来看WindowManagerGlobal的addView方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">public void addView(View view, ViewGroup.LayoutParams params,</div><div class="line">            Display display, Window parentWindow) &#123;</div><div class="line">       //...</div><div class="line">        ViewRootImpl root;</div><div class="line">        View panelParentView = null;</div><div class="line"></div><div class="line">        synchronized (mLock) &#123;</div><div class="line">            //...</div><div class="line">            //***关键点，new一个ViewRoot，持有ViewRootImpl的引用</div><div class="line">            root = new ViewRootImpl(view.getContext(), display);</div><div class="line"></div><div class="line">            view.setLayoutParams(wparams);</div><div class="line">            //添加缓存</div><div class="line">            mViews.add(view);</div><div class="line">            mRoots.add(root);</div><div class="line">            mParams.add(wparams);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        // do this last because it fires off messages to start doing things</div><div class="line">        try &#123;</div><div class="line">            //这里才是到真正要显示View布局的地方，也是在这里界面要和用户见面了！！！</div><div class="line">            root.setView(view, wparams, panelParentView);</div><div class="line">        &#125; catch (RuntimeException e) &#123;</div><div class="line">            // BadTokenException or InvalidDisplayException, clean up.</div><div class="line">            synchronized (mLock) &#123;</div><div class="line">                final int index = findViewLocked(view, false);</div><div class="line">                if (index &gt;= 0) &#123;</div><div class="line">                    removeViewLocked(index, true);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            throw e;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p><strong>继续往下看RootViewImpl的setView()方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public void setView(View view, WindowManager.LayoutParams attrs, View panelParentView) &#123;</div><div class="line">        synchronized (this) &#123;</div><div class="line">            if (mView == null) &#123;</div><div class="line">                mView = view;</div><div class="line"></div><div class="line">                //...</div><div class="line"></div><div class="line">                // Schedule the first layout -before- adding to the window</div><div class="line">                // manager, to make sure we do the relayout before receiving</div><div class="line">                // any other events from the system.</div><div class="line">                //就是一个关键方法，来显示view</div><div class="line">                requestLayout();</div><div class="line">                //...</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p><strong>来看看说了那么多废话的requestLayout()到底是做了些什么</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">    public void requestLayout() &#123;</div><div class="line">        if (!mHandlingLayoutInLayoutRequest) &#123;</div><div class="line">            //会检查线程，你所有的在子线程操作UI的错误都是在checkThread中爆出来的</div><div class="line">            checkThread();</div><div class="line">            mLayoutRequested = true;</div><div class="line">            //这就要马上显示了</div><div class="line">            scheduleTraversals();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//what the fuck 什么方法都没有，哪有显示方法</div><div class="line">void scheduleTraversals() &#123;</div><div class="line">        if (!mTraversalScheduled) &#123;</div><div class="line">            mTraversalScheduled = true;</div><div class="line">            mTraversalBarrier = mHandler.getLooper().getQueue().postSyncBarrier();</div><div class="line">            mChoreographer.postCallback(</div><div class="line">                    Choreographer.CALLBACK_TRAVERSAL, mTraversalRunnable, null);</div><div class="line">            if (!mUnbufferedInputDispatch) &#123;</div><div class="line">                scheduleConsumeBatchedInput();</div><div class="line">            &#125;</div><div class="line">            notifyRendererOfFramePending();</div><div class="line">            pokeDrawLockIfNeeded();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>别急，我们来看有个postCallback，来看看这个runnable干嘛的，没有就不看这FUNKING CODE了！！！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">final class TraversalRunnable implements Runnable &#123;</div><div class="line">        @Override</div><div class="line">        public void run() &#123;</div><div class="line">            //熟不熟悉的单词 doTraversal </div><div class="line">            doTraversal();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p><strong>终于找到你，好像隔了几个世纪，到这里就要来执行View的绘制流程了，到这里我们的View也就绘制出来了，也是在这里我们才可以获得控件的宽高了，是在onResume之后我们才可以获取宽高，别再犯傻逼的错误了</strong></p>
-<h3 id="第三步-界面已显示，该干嘛干嘛，主要的是第二步"><a href="#第三步-界面已显示，该干嘛干嘛，主要的是第二步" class="headerlink" title="第三步 界面已显示，该干嘛干嘛，主要的是第二步"></a>第三步 界面已显示，该干嘛干嘛，主要的是第二步</h3><p><img src="http://img2.imgtn.bdimg.com/it/u=2671380760,1371402298&amp;fm=26&amp;gp=0.jpg" alt="image"></p>
-<p>附：Acitivity启动流程图<br><img src="http://upload-images.jianshu.io/upload_images/2138897-8904c77260d0f09f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<h2 id="Looper源码分析"><a href="#Looper源码分析" class="headerlink" title="Looper源码分析"></a>Looper源码分析</h2><p>打开Looper的源码来看，其实并不多。相对于其他源码来说，应该说是少。但是少并不代表简单。</p>
+<h3 id="Looper初始化"><a href="#Looper初始化" class="headerlink" title="Looper初始化"></a>Looper初始化</h3><p>首先来看第一个方法，也是我们在自己的线程中只能调用的方法：prepare，你要说我明明可以调用prepareMainLooper方法，那么我fuck说。</p>
+<p>上源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">()</span> </span>&#123;</div><div class="line">    prepare(<span class="keyword">true</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>it’s so easy！</p>
+<p>参数true，表示该looper可以退出！</p>
+<p>只有一句代码，调用了私有的prepare方法，继续上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">prepare</span><span class="params">(<span class="keyword">boolean</span> quitAllowed)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (sThreadLocal.get() != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Only one Looper may be created per thread"</span>);</div><div class="line">    &#125;</div><div class="line">    sThreadLocal.set(<span class="keyword">new</span> Looper(quitAllowed));</div><div class="line">&#125;</div><div class="line"><span class="comment">/////////</span></div><div class="line"><span class="comment">//sThreadLocal的set方法 就一个map，使Thread与Looper 对应起来</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T value)</span> </span>&#123;</div><div class="line">        Thread t = Thread.currentThread();</div><div class="line">        ThreadLocalMap map = getMap(t);</div><div class="line">        <span class="keyword">if</span> (map != <span class="keyword">null</span>)</div><div class="line">            map.set(<span class="keyword">this</span>, value);</div><div class="line">        <span class="keyword">else</span></div><div class="line">            createMap(t, value);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>这个方法我们来分析一下，sThreadLocal是一个静态的局部变量，其声明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal&lt;Looper&gt; sThreadLocal = <span class="keyword">new</span> ThreadLocal&lt;Looper&gt;();</div></pre></td></tr></table></figure>
+<p>可以看到sThreadLocal持有一个Looper对象，白话一点就是将Thread与Loop进行一对一配对，使Thread只有一个Looper。</p>
+<p>到此为止，我们的Loop已经初始化结束！</p>
+<h3 id="Looper使用"><a href="#Looper使用" class="headerlink" title="Looper使用"></a>Looper使用</h3><p>使用Loop我们都知道是调用Looper.loop()方法</p>
+<p>那么我们来看一下loop（）的源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">loop</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> Looper me = myLooper();</div><div class="line">    <span class="keyword">if</span> (me == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"No Looper; Looper.prepare() wasn't called on this thread."</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">final</span> MessageQueue queue = me.mQueue;</div><div class="line"></div><div class="line">    <span class="comment">// Make sure the identity of this thread is that of the local process,</span></div><div class="line">    <span class="comment">// and keep track of what that identity token actually is.</span></div><div class="line">    Binder.clearCallingIdentity();</div><div class="line">    <span class="keyword">final</span> <span class="keyword">long</span> ident = Binder.clearCallingIdentity();</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (;;) &#123;</div><div class="line">        Message msg = queue.next(); <span class="comment">// might block</span></div><div class="line">        <span class="keyword">if</span> (msg == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="comment">// No message indicates that the message queue is quitting.</span></div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">       <span class="comment">//...省略部分代码</span></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">          <span class="comment">//message的target就是要处理该消息的Handler</span></div><div class="line">            msg.target.dispatchMessage(msg);</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            <span class="keyword">if</span> (traceTag != <span class="number">0</span>) &#123;</div><div class="line">                Trace.traceEnd(traceTag);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//...省略部分代码</span></div><div class="line"></div><div class="line">        msg.recycleUnchecked();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在此源码中我们发现了一个死循环，也就是之前提到的无限从消息队列中取出消息来进行处理。</p>
+<blockquote>
+<p>在Looper的源码中我们还看到了    prepareMainLooper方法是对外公开的，但是该方法是Android主线程才可以调用的初始化looper的，而且主线程的looper是不可退出的。</p>
+</blockquote>
+<h2 id="Handler源码分析"><a href="#Handler源码分析" class="headerlink" title="Handler源码分析"></a>Handler源码分析</h2><p>Handler我们一般初始化构造就是</p>
+<p><code>Handler h = new Handler();</code></p>
+<p>我们追踪源码可以看到，其内部会自动调用两个参数的构造</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">Handler</span><span class="params">(Callback callback, <span class="keyword">boolean</span> async)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (FIND_POTENTIAL_LEAKS) &#123;</div><div class="line">        <span class="keyword">final</span> Class&lt;? extends Handler&gt; klass = getClass();</div><div class="line">        <span class="keyword">if</span> ((klass.isAnonymousClass() || klass.isMemberClass() || klass.isLocalClass()) &amp;&amp;</div><div class="line">                (klass.getModifiers() &amp; Modifier.STATIC) == <span class="number">0</span>) &#123;</div><div class="line">            Log.w(TAG, <span class="string">"The following Handler class should be static or leaks might occur: "</span> +</div><div class="line">                klass.getCanonicalName());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    mLooper = Looper.myLooper();</div><div class="line">    <span class="keyword">if</span> (mLooper == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(</div><div class="line">            <span class="string">"Can't create handler inside thread that has not called Looper.prepare()"</span>);</div><div class="line">    &#125;</div><div class="line">    mQueue = mLooper.mQueue;</div><div class="line">    mCallback = callback;</div><div class="line">    mAsynchronous = async;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这个构造中我们可以看到，通过调用Looper.myLooper()来获取了当前线程的looper对象.</p>
+<h3 id="dispatchMessage源码"><a href="#dispatchMessage源码" class="headerlink" title="dispatchMessage源码"></a>dispatchMessage源码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dispatchMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (msg.callback != <span class="keyword">null</span>) &#123;</div><div class="line">        handleCallback(msg);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">if</span> (mCallback != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">if</span> (mCallback.handleMessage(msg)) &#123;</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        handleMessage(msg);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Looper中的死循环就是调用了handler的这个方法，如果传入的Message，设置了callback会首先调用Message的callback来处理消息。</p>
+<p>如果Message的callback为null，这时候会判断，该Handler的callback是否为空，如果不为空调用Handler的callback处理消息，如果Handler的callback也为null则调用Handler自身的handleMessage方法来处理消息。</p>
+<blockquote>
+<p>注：如果Handler的callback不为null，但是返回了false，在callback处理消息结束之后，还会再调用一次自身的handleMessage方法。</p>
+</blockquote>
+<h2 id="Message源码分析"><a href="#Message源码分析" class="headerlink" title="Message源码分析"></a>Message源码分析</h2><p><strong>Message的创建一般不用new，因为这可能会引起内存泄露，Android本身有一个消息池，建议从消息池中获取消息，来使用</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Mesage.obtain() ;//   handler.obtain();</div></pre></td></tr></table></figure>
+<p><code>`public int what</code></p>
+<p>该变量用于存储Message的标识，在handleMessage(Message msg)方法中可以通过该变量来辨别Message</p>
+<ul>
+<li><p><code>public int arg1</code></p>
+<p>该变量用于存储简单的整型数据，如果你想在Message中附带一些整型数据就直接用该变量存储。</p>
+</li>
+<li><p><code>public int arg2</code></p>
+<p>该变量用于存储简单的整型数据，如果你想在Message中附带一些整型数据就直接用该变量存储。</p>
+</li>
+<li><p><code>public Object obj</code></p>
+<p>该变量用于存储对象，在heandleMessage(Message msg)方法中可以取出该对象。</p>
+</li>
+<li><p><code>Bundle data</code></p>
+<p>该变量用于存储比较复杂的数据。</p>
+</li>
+<li><p><code>Handler target</code></p>
+<p>该变量用于存储发送当前Message的Handler对象，前面提到过Handler和Message其实是互相持有引用的。</p>
+</li>
+<li><p><code>Runnable callback</code></p>
+<p>该变量用于存储将会执行的Runnable对象，前面提到过除了handleMessage(Message msg)方法，你也可以使用Runnable执行操作，要注意的是这种做法并不会创建新的线程。</p>
+</li>
+<li><p><code>long when</code></p>
+<p>该变量用于存储发送消息的时间点，以毫秒为单位。</p>
+</li>
+<li><p><code>Message next</code></p>
+<p>指向下一个Message，也就是线程池其实一个链表结构。</p>
+</li>
+<li><p><code>private static Message sPool</code></p>
+<p>该静态Message是整个线程池链表的头部，通过它才能够逐个取出线程池的Message。</p>
+</li>
+<li><p><code>private static final Object sPoolSync = new Object()</code></p>
+<p>该静态对象仅仅是为了给同步块提供一个锁而已。</p>
+</li>
+<li><p><code>private static int sPoolSize = 0</code></p>
+<p>该静态变量用于记录线程池中Message的数量，也就是链表的长度。</p>
+</li>
+<li><p><code>private static final int MAX_POOL_SIZE = 50</code></p>
+<p>该静态常量闲置了线程池中Message的最大数量，也就是链表的最大长度。</p>
+</li>
+<li><p><code>int flags</code></p>
+<p>该变量用于存储Message当前的状态，具体状态值有下面三个。</p>
+</li>
+<li><p><code>static final int FLAG_IN_USE = 1 &lt;&lt; 0</code></p>
+<p>该常量用于标识当前的Message正处于使用状态，当Message处于消息队列中、处于消息池中或者Handler正在处理该Message的时候，它就处于使用状态。</p>
+</li>
+<li><p><code>static final int FLAG_ASYNCHRONOUS = 1 &lt;&lt; 1</code></p>
+<p>该常量用于标识当前的Message是异步的。</p>
+</li>
+<li><p><code>static final int FLAGS_TO_CLEAR_ON_COPY_FROM = FLAG_IN_USE</code></p>
+<p>当调用copyFrom()方法时，该常量将会被设置，其值其实和 FLAG_IN_USE 一样。</p>
+</li>
+</ul>
 
     
 
@@ -524,21 +589,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/08/21/setContent源码分析/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2017/08/21/View-Event-Transform/" id="post_nav-older" class="next-content">
+        <a href="/2017/08/21/setContent源码分析/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
@@ -630,7 +687,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">4</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/08/">八月 2017<span class="sidebar_archives-count">5</span></a>
             </ul>
         </li>
         
