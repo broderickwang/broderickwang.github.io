@@ -335,7 +335,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#让你的View动起来"><span class="post-toc-number">1.</span> <span class="post-toc-text">让你的View动起来</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一步-让点动起来"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">第一步 让点动起来</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二步-添加贝塞尔曲线"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">第二步 添加贝塞尔曲线</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三步-绑定View，实现轮子"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">第三步 绑定View，实现轮子</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#鸣谢"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">鸣谢</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#轮子"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">轮子</span></a></li></ol></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -477,7 +477,41 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        
+        <h1 id="让你的View动起来"><a href="#让你的View动起来" class="headerlink" title="让你的View动起来"></a>让你的View动起来</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    玩过QQ的人应该都不会对QQ消息的小红点陌生吧。在我们的实际应用开发中有时候也是会遇到这种消息拖拽消失的需求。这是我们要么自己造轮子，要么去Google找轮子。而我们在网上找的轮子呢，大部分都是自定义View然后这个View支持拖动，是一个死的轮子。</p>
+<p>​    而今天，我们就是要改变现状，让我们的轮子转起来，写一个工具类，只要用这个工具类那么你的View就能动起来，而不是写死在View内部。有没有觉得很帅？！快鼓掌</p>
+<p>​    <strong>挽起袖子，撸起来！</strong></p>
+<hr>
+<h2 id="第一步-让点动起来"><a href="#第一步-让点动起来" class="headerlink" title="第一步 让点动起来"></a>第一步 让点动起来</h2><p>​    在这里我们实现的功能非常简单，就是我们自定义view，在这个View中当我们按下手指的时候，会画两个红点，这两个红点最开始是重合的，当我们移动手指的时候，一个红点随着我们的手指移动，而另一个红点，则随着我们手指移动的距离越远半径而变得越来越小，知道这个半径等于0，不再画这个红点为止。</p>
+<p>​    这一步应该是比较容易的，就不写代码了，了解了思路是最重要的，如果你看到这里就懵逼了，那么我不建议你往下看了，这可能对你来说比较难了，我建议你去看一点自定义View的基础之后再来看本文章。</p>
+<h2 id="第二步-添加贝塞尔曲线"><a href="#第二步-添加贝塞尔曲线" class="headerlink" title="第二步 添加贝塞尔曲线"></a>第二步 添加贝塞尔曲线</h2><p>​    我们看QQ消息的拖拽，控件与红色圆点之间并不是空白的，而是有填充的，而且不是直线填充，是有两条曲线的，给人非常舒服的感觉，没错，这两条曲线就是<a href="https://zh.wikipedia.org/zh/%E8%B2%9D%E8%8C%B2%E6%9B%B2%E7%B7%9A" target="_blank" rel="external">贝塞尔曲线</a>。</p>
+<p>​    对于普通的二阶贝塞尔曲线还是比较容易理解的，当然对于高阶我自己有时候也是懵逼的 =.=</p>
+<p>​    这里有一个比较好的贝塞尔曲线的游戏，可以去<a href="http://bezier.method.ac/" target="_blank" rel="external">玩一玩</a>。</p>
+<p>​    如果要加入这两个曲线那么就需要找到二阶贝塞尔曲线的控制点和起始点，起始点就是两个圆的切线位置，控制点我们去黄金分割点。</p>
+<p><img src="https://github.com/broderickwang/ShotPic/blob/master/%E8%B4%9D%E5%A1%9E%E5%B0%94.png" alt="贝塞尔解析"></p>
+<p>这个分析过程会用到部分三角函数的知识，但是这应该都是初中的内容，我相信对各位都不是问题。</p>
+<p>Path bezier = new Path();</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">float</span> dx = mDragPoint.x - mFixedPoint.x;</div><div class="line"><span class="keyword">float</span> dy = mDragPoint.y - mFixedPoint.y;</div><div class="line"><span class="keyword">float</span> tanA = dy/dx;</div><div class="line"><span class="keyword">double</span> A = Math.atan(tanA);</div><div class="line"></div><div class="line"><span class="keyword">float</span> p1x = (<span class="keyword">float</span>) (mFixedPoint.x + Math.sin(A)*mFixedRadius);</div><div class="line"><span class="keyword">float</span> p1y = (<span class="keyword">float</span>) (mFixedPoint.y - Math.cos(A)*mFixedRadius);</div><div class="line"></div><div class="line"><span class="keyword">float</span> p2x = (<span class="keyword">float</span>) (mDragPoint.x + Math.sin(A)*mDragRadius);</div><div class="line"><span class="keyword">float</span> p2y = (<span class="keyword">float</span>) (mDragPoint.y - Math.cos(A)*mDragRadius);</div><div class="line"></div><div class="line"><span class="keyword">float</span> p3x = (<span class="keyword">float</span>) (mDragPoint.x - Math.sin(A)*mDragRadius);</div><div class="line"><span class="keyword">float</span> p3y = (<span class="keyword">float</span>) (mDragPoint.y + Math.cos(A)*mDragRadius);</div><div class="line"></div><div class="line"><span class="keyword">float</span> p4x = (<span class="keyword">float</span>) (mFixedPoint.x - Math.sin(A)*mFixedRadius);</div><div class="line"><span class="keyword">float</span> p4y = (<span class="keyword">float</span>) (mFixedPoint.y + Math.cos(A)*mFixedRadius);</div><div class="line"></div><div class="line"><span class="keyword">float</span> controlX = mFixedPoint.x + (mDragPoint.x-mFixedPoint.x)*GOLD_POINT;</div><div class="line"><span class="keyword">float</span> controlY = mFixedPoint.y + (mDragPoint.y-mFixedPoint.y)*GOLD_POINT;</div><div class="line"></div><div class="line">bezier.moveTo(p1x,p1y);</div><div class="line">bezier.quadTo(controlX,controlY,p2x,p2y);</div><div class="line">bezier.lineTo(p3x,p3y);</div><div class="line">bezier.quadTo(controlX,controlY,p4x,p4y);</div><div class="line">bezier.close();</div></pre></td></tr></table></figure>
+<p>这是贝塞尔曲线的主要代码，应该也不难。</p>
+<p>这个时候我们再把我们的程序运行起来，是不是有点样子了？这时候我们的工作已经做了一大半了 。</p>
+<h2 id="第三步-绑定View，实现轮子"><a href="#第三步-绑定View，实现轮子" class="headerlink" title="第三步 绑定View，实现轮子"></a>第三步 绑定View，实现轮子</h2><p>​    到目前位置，我们的程序还是和网上的轮子都差不多，写在自定义View里面。</p>
+<p>​    我们在BubbleView中添加一个静态的attach方法，将需要拖动的View传进去，然后把刚才重写的OnTouch给删了，是的你没看错，就是<strong><u>删了</u></strong></p>
+<p>​    我们要做的第一件事就是在我们点击这个View的时候让这个View消失，是的你没看错，就是让它<strong><u>消失</u></strong>。此功能简单否？简单也！</p>
+<p>​    我们再分析一下功能，我们是要我们的View随便拖动，而不仅仅是在我们setContent的这个ViewGroup中，那么我就不能单纯的在我们设置的父布局中进行移动了。有没有好办法？，答案是肯定的，当然有，没有这个轮子不就毁了？那是什么呢，就是我们的WindowManager，不用怕就是它，加在WindowManager上就可以让我们的视图随便拖动了，只要是你拖到的地方都行。</p>
+<blockquote>
+<p>​    所有的窗口行的应用都是用到了WindowManager，有兴趣的可以去研究一下</p>
+</blockquote>
+<p>​    我们在刚才点击这个View手指按下的时候已经让这个View不可见了，那么我们不要去操作他，而是去操作它的镜像，没错镜像。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Bitmap <span class="title">getBitmapByView</span><span class="params">(View view)</span></span>&#123;</div><div class="line">	view.buildDrawingCache();</div><div class="line">	Bitmap bitmap = view.getDrawingCache();</div><div class="line">	<span class="keyword">return</span>  bitmap;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>代码非常简单，那么手机的截屏你是不是也知道怎么弄了？写一个轮子试试吧！</strong></p>
+<p>同时，我们添加一个刚才我们写BubbleView。并将我们获得的这个镜像传递进去，是不是有思路了，对就是让刚才我们写的随着手指移动的红点加上我们设置的这个bitmap跟着移动。</p>
+<p>同时我们定义两个监听接口，一个是拖动距离超出最大距离视图爆炸和小于最大最距离的时候，视图回弹。另一个是对视图消失的回调。这个就不细说了。</p>
+<p>这里主要的思路，如果你的思路清楚了，那么一切都不是问题。</p>
+<p><strong><em>思想&gt;CODING</em></strong></p>
+<p>当然这里面还是有许多的细节问题。但是大的思路明确了，小细节就是慢慢调了。比如，状态栏透明等小问题，还有状态栏的高度的加减问题，回弹动画，爆炸动画等。不过我相信这些都是小事了。</p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><p><a href="http://www.jianshu.com/p/9eb9c61e6c8b" target="_blank" rel="external">红橙大佬</a></p>
+<h2 id="轮子"><a href="#轮子" class="headerlink" title="轮子"></a>轮子</h2><p>​    当然，肯定有人会直接想要轮子的，来给你个<a href="https://github.com/broderickwang/BubbleViewDemo" target="_blank" rel="external">轮子</a></p>
+<p>[^]: </p>
+
     
 
     
