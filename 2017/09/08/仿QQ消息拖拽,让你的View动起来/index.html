@@ -503,8 +503,8 @@
 <p>​    我们在刚才点击这个View手指按下的时候已经让这个View不可见了，那么我们不要去操作他，而是去操作它的镜像，没错镜像。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Bitmap <span class="title">getBitmapByView</span><span class="params">(View view)</span></span>&#123;</div><div class="line">	view.buildDrawingCache();</div><div class="line">	Bitmap bitmap = view.getDrawingCache();</div><div class="line">	<span class="keyword">return</span>  bitmap;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>代码非常简单，那么手机的截屏你是不是也知道怎么弄了？写一个轮子试试吧！</strong></p>
-<p>同时，我们添加一个刚才我们写BubbleView。并将我们获得的这个镜像传递进去，是不是有思路了，对就是让刚才我们写的随着手指移动的红点加上我们设置的这个bitmap跟着移动。</p>
-<p>同时我们定义两个监听接口，一个是拖动距离超出最大距离视图爆炸和小于最大最距离的时候，视图回弹。另一个是对视图消失的回调。这个就不细说了。</p>
+<p>​    同时，我们添加一个刚才我们写BubbleView。并将我们获得的这个镜像传递进去，是不是有思路了。对，就是让我们传入的这个bitmap随着刚才手指移动而移动，从而实现了我们View镜像的移动，对于用户来说我们的View就变得可拖动起来了。</p>
+<p>​    这里我们定义两个监听接口，一个是用来监听拖动距离超出最大距离视图爆炸和小于最大最距离的时候，视图回弹。另一个是对视图消失的回调。</p>
 <p>这里主要的思路，如果你的思路清楚了，那么一切都不是问题。</p>
 <p><strong><em>思想&gt;CODING</em></strong></p>
 <p>当然这里面还是有许多的细节问题。但是大的思路明确了，小细节就是慢慢调了。比如，状态栏透明等小问题，还有状态栏的高度的加减问题，回弹动画，爆炸动画等。不过我相信这些都是小事了。</p>
