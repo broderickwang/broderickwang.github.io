@@ -12,7 +12,7 @@
     
     <title>
         
-            setContent源码分析 | 
+            让你的View动起来 | 
         
         Mars World
     </title>
@@ -65,18 +65,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="setContent源码分析 | Mars World">
+    <meta property="og:title" content="让你的View动起来 | Mars World">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="">
     
 
     
-        <meta property="article:published_time" content="8月 21, 2017" />
-        <meta property="article:modified_time" content="8月 21, 2017" />
+        <meta property="article:published_time" content="9月 08, 2017" />
+        <meta property="article:modified_time" content="9月 08, 2017" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="setContent源码分析 | Mars World">
+    <meta name="twitter:title" content="让你的View动起来 | Mars World">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -84,7 +84,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/2017/08/21/setContent源码分析/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2017/09/08/让你的View动起来/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -110,10 +110,10 @@
         },
         "description": "Hi, nice to meet you"
     },
-    "headline": "setContent源码分析",
-    "url": "http://yoursite.com/2017/08/21/setContent源码分析/index.html",
-    "datePublished": "8月 21, 2017",
-    "dateModified": "8月 21, 2017",
+    "headline": "让你的View动起来",
+    "url": "http://yoursite.com/2017/09/08/让你的View动起来/index.html",
+    "datePublished": "9月 08, 2017",
+    "dateModified": "9月 08, 2017",
     "description": "",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -335,7 +335,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#追踪到Activity的setContentView"><span class="post-toc-number">1.</span> <span class="post-toc-text">追踪到Activity的setContentView</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PhoneWindow的setContentView源码："><span class="post-toc-number">2.</span> <span class="post-toc-text">PhoneWindow的setContentView源码：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#installDecor方法："><span class="post-toc-number">3.</span> <span class="post-toc-text">installDecor方法：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#generateLayout方法："><span class="post-toc-number">4.</span> <span class="post-toc-text">generateLayout方法：</span></a></li></ol>
+        
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -373,7 +373,7 @@
         
     
             <p class="article-headline-p">
-                setContent源码分析
+                让你的View动起来
             </p>
         </div>
 
@@ -392,7 +392,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Broderick Wang</strong>
-        <span>8月 21, 2017</span>
+        <span>9月 08, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -432,7 +432,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=setContent源码分析&url=http://yoursite.com/2017/08/21/setContent源码分析/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=让你的View动起来&url=http://yoursite.com/2017/09/08/让你的View动起来/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -447,7 +447,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/21/setContent源码分析/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2017/09/08/让你的View动起来/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -459,7 +459,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Mars World&title=setContent源码分析&summary=&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2017/08/21/setContent源码分析/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Mars World&title=让你的View动起来&summary=&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2017/09/08/让你的View动起来/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -477,17 +477,7 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="追踪到Activity的setContentView"><a href="#追踪到Activity的setContentView" class="headerlink" title="追踪到Activity的setContentView"></a>追踪到Activity的setContentView</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public void setContentView(@LayoutRes int layoutResID) &#123;</div><div class="line">    getWindow().setContentView(layoutResID);</div><div class="line">    initWindowDecorActionBar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>getWindow()返回PhoneWindow的实例 PhoneWindow 继承Window</p>
-<hr>
-<h2 id="PhoneWindow的setContentView源码："><a href="#PhoneWindow的setContentView源码：" class="headerlink" title="PhoneWindow的setContentView源码："></a>PhoneWindow的setContentView源码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public void setContentView(int layoutResID) &#123;</div><div class="line">    </div><div class="line">//如果父布局为空，初始化父布局</div><div class="line">if (mContentParent == null) &#123;</div><div class="line">    installDecor();</div><div class="line">&#125; else if (!hasFeature(FEATURE_CONTENT_TRANSITIONS)) &#123;</div><div class="line">    mContentParent.removeAllViews();</div><div class="line">&#125;</div><div class="line"></div><div class="line">if (hasFeature(FEATURE_CONTENT_TRANSITIONS)) &#123;</div><div class="line">    final Scene newScene = Scene.getSceneForLayout(mContentParent, layoutResID,</div><div class="line">            getContext());</div><div class="line">    transitionTo(newScene);</div><div class="line">&#125; else &#123;</div><div class="line">    //把自己的布局即传入的layoutResID 加载到父布局中（即android.id.content线性布局）</div><div class="line">    mLayoutInflater.inflate(layoutResID, mContentParent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="installDecor方法："><a href="#installDecor方法：" class="headerlink" title="installDecor方法："></a>installDecor方法：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (mContentParent == null) &#123;</div><div class="line">    mContentParent = generateLayout(mDecor);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong> mDecor 就是一个FrameLayout</strong></p>
-<h2 id="generateLayout方法："><a href="#generateLayout方法：" class="headerlink" title="generateLayout方法："></a>generateLayout方法：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ViewGroup contentParent = (ViewGroup)findViewById(ID_ANDROID_CONTENT);</div><div class="line">if (contentParent == null) &#123;</div><div class="line">    throw new RuntimeException(&quot;Window couldn&apos;t find content container view&quot;);</div><div class="line">&#125;</div><div class="line">return contentParent;</div></pre></td></tr></table></figure>
-<p>最后加载的就是public static final int ID_ANDROID_CONTENT = com.android.internal.R.id.content; 布局 源码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout </div><div class="line">xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;     </div><div class="line">android:id=&quot;@+id/content&quot;    </div><div class="line">android:orientation=&quot;vertical&quot;    </div><div class="line">android:layout_width=&quot;match_parent&quot;     </div><div class="line">android:layout_height=&quot;wrap_content&quot;    </div><div class="line">android:background=&quot;@android:drawable/edit_text&quot;    android:divider=&quot;@android:drawable/divider_horizontal_textfield&quot;   </div><div class="line">android:addStatesFromChildren=&quot;true&quot;&gt;</div><div class="line"></div><div class="line">    &lt;LinearLayout </div><div class="line">    android:id=&quot;@+id/container&quot;        </div><div class="line">    android:orientation=&quot;vertical&quot;        </div><div class="line">    android:layout_width=&quot;match_parent&quot;         </div><div class="line">    android:layout_height=&quot;wrap_content&quot;        </div><div class="line">    android:paddingEnd=&quot;0dip&quot;    /&gt;</div><div class="line"></div><div class="line">    &lt;AutoCompleteTextView </div><div class="line">    android:id=&quot;@+id/edit&quot;        </div><div class="line">    android:completionThreshold=&quot;1&quot;        </div><div class="line">    android:layout_width=&quot;match_parent&quot;        </div><div class="line">    android:layout_height=&quot;wrap_content&quot;        </div><div class="line">    android:singleLine=&quot;true&quot;        </div><div class="line">    android:layout_gravity=&quot;center_vertical&quot;    /&gt;   </div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
-<p>就是一个LinearLayout布局</p>
-
+        
     
 
     
@@ -506,21 +496,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/08/22/Looper,Handler,Message源码分析/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2017/08/21/Activity-Launch-Process/" id="post_nav-older" class="next-content">
+        <a href="/2017/08/22/Looper,Handler,Message源码分析/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
