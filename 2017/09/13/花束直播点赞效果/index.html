@@ -12,7 +12,7 @@
     
     <title>
         
-            setContent源码分析 | 
+            花束直播点赞效果 | 
         
         Mars World
     </title>
@@ -65,18 +65,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="setContent源码分析 | Mars World">
+    <meta property="og:title" content="花束直播点赞效果 | Mars World">
     <meta property="og:image" content="/img/favicon.png" />
     <meta property="og:description" content="">
     
 
     
-        <meta property="article:published_time" content="8月 21, 2017" />
-        <meta property="article:modified_time" content="8月 21, 2017" />
+        <meta property="article:published_time" content="9月 13, 2017" />
+        <meta property="article:modified_time" content="9月 13, 2017" />
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="setContent源码分析 | Mars World">
+    <meta name="twitter:title" content="花束直播点赞效果 | Mars World">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -84,7 +84,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/2017/08/21/setContent源码分析/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2017/09/13/花束直播点赞效果/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -110,10 +110,10 @@
         },
         "description": "Hi, nice to meet you"
     },
-    "headline": "setContent源码分析",
-    "url": "http://yoursite.com/2017/08/21/setContent源码分析/index.html",
-    "datePublished": "8月 21, 2017",
-    "dateModified": "8月 21, 2017",
+    "headline": "花束直播点赞效果",
+    "url": "http://yoursite.com/2017/09/13/花束直播点赞效果/index.html",
+    "datePublished": "9月 13, 2017",
+    "dateModified": "9月 13, 2017",
     "description": "",
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -335,7 +335,7 @@
 
     
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#追踪到Activity的setContentView"><span class="post-toc-number">1.</span> <span class="post-toc-text">追踪到Activity的setContentView</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PhoneWindow的setContentView源码："><span class="post-toc-number">2.</span> <span class="post-toc-text">PhoneWindow的setContentView源码：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#installDecor方法："><span class="post-toc-number">3.</span> <span class="post-toc-text">installDecor方法：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#generateLayout方法："><span class="post-toc-number">4.</span> <span class="post-toc-text">generateLayout方法：</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#花束直播点赞效果"><span class="post-toc-number">1.</span> <span class="post-toc-text">花束直播点赞效果</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分析"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">实现</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一步-加载心形图片"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">第一步 加载心形图片</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第二步-实现贝塞尔估值器"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">第二步 实现贝塞尔估值器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第三步-确定控制点和起始点"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">第三步 确定控制点和起始点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第四步-实现路径动画"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">第四步 实现路径动画</span></a></li></ol></li></ol></li></ol>
         <!--
         <li class="mdl-menu__item">
             Some Action
@@ -373,7 +373,7 @@
         
     
             <p class="article-headline-p">
-                setContent源码分析
+                花束直播点赞效果
             </p>
         </div>
 
@@ -392,7 +392,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Broderick Wang</strong>
-        <span>8月 21, 2017</span>
+        <span>9月 13, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -432,7 +432,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=setContent源码分析&url=http://yoursite.com/2017/08/21/setContent源码分析/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=花束直播点赞效果&url=http://yoursite.com/2017/09/13/花束直播点赞效果/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -447,7 +447,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2017/08/21/setContent源码分析/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2017/09/13/花束直播点赞效果/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -459,7 +459,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Mars World&title=setContent源码分析&summary=&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2017/08/21/setContent源码分析/index.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Mars World&title=花束直播点赞效果&summary=&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2017/09/13/花束直播点赞效果/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -477,16 +477,63 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="追踪到Activity的setContentView"><a href="#追踪到Activity的setContentView" class="headerlink" title="追踪到Activity的setContentView"></a>追踪到Activity的setContentView</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public void setContentView(@LayoutRes int layoutResID) &#123;</div><div class="line">    getWindow().setContentView(layoutResID);</div><div class="line">    initWindowDecorActionBar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>getWindow()返回PhoneWindow的实例 PhoneWindow 继承Window</p>
-<hr>
-<h2 id="PhoneWindow的setContentView源码："><a href="#PhoneWindow的setContentView源码：" class="headerlink" title="PhoneWindow的setContentView源码："></a>PhoneWindow的setContentView源码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public void setContentView(int layoutResID) &#123;</div><div class="line">    </div><div class="line">//如果父布局为空，初始化父布局</div><div class="line">if (mContentParent == null) &#123;</div><div class="line">    installDecor();</div><div class="line">&#125; else if (!hasFeature(FEATURE_CONTENT_TRANSITIONS)) &#123;</div><div class="line">    mContentParent.removeAllViews();</div><div class="line">&#125;</div><div class="line"></div><div class="line">if (hasFeature(FEATURE_CONTENT_TRANSITIONS)) &#123;</div><div class="line">    final Scene newScene = Scene.getSceneForLayout(mContentParent, layoutResID,</div><div class="line">            getContext());</div><div class="line">    transitionTo(newScene);</div><div class="line">&#125; else &#123;</div><div class="line">    //把自己的布局即传入的layoutResID 加载到父布局中（即android.id.content线性布局）</div><div class="line">    mLayoutInflater.inflate(layoutResID, mContentParent);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="installDecor方法："><a href="#installDecor方法：" class="headerlink" title="installDecor方法："></a>installDecor方法：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if (mContentParent == null) &#123;</div><div class="line">    mContentParent = generateLayout(mDecor);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong> mDecor 就是一个FrameLayout</strong></p>
-<h2 id="generateLayout方法："><a href="#generateLayout方法：" class="headerlink" title="generateLayout方法："></a>generateLayout方法：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ViewGroup contentParent = (ViewGroup)findViewById(ID_ANDROID_CONTENT);</div><div class="line">if (contentParent == null) &#123;</div><div class="line">    throw new RuntimeException(&quot;Window couldn&apos;t find content container view&quot;);</div><div class="line">&#125;</div><div class="line">return contentParent;</div></pre></td></tr></table></figure>
-<p>最后加载的就是public static final int ID_ANDROID_CONTENT = com.android.internal.R.id.content; 布局 源码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&lt;LinearLayout </div><div class="line">xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;     </div><div class="line">android:id=&quot;@+id/content&quot;    </div><div class="line">android:orientation=&quot;vertical&quot;    </div><div class="line">android:layout_width=&quot;match_parent&quot;     </div><div class="line">android:layout_height=&quot;wrap_content&quot;    </div><div class="line">android:background=&quot;@android:drawable/edit_text&quot;    android:divider=&quot;@android:drawable/divider_horizontal_textfield&quot;   </div><div class="line">android:addStatesFromChildren=&quot;true&quot;&gt;</div><div class="line"></div><div class="line">    &lt;LinearLayout </div><div class="line">    android:id=&quot;@+id/container&quot;        </div><div class="line">    android:orientation=&quot;vertical&quot;        </div><div class="line">    android:layout_width=&quot;match_parent&quot;         </div><div class="line">    android:layout_height=&quot;wrap_content&quot;        </div><div class="line">    android:paddingEnd=&quot;0dip&quot;    /&gt;</div><div class="line"></div><div class="line">    &lt;AutoCompleteTextView </div><div class="line">    android:id=&quot;@+id/edit&quot;        </div><div class="line">    android:completionThreshold=&quot;1&quot;        </div><div class="line">    android:layout_width=&quot;match_parent&quot;        </div><div class="line">    android:layout_height=&quot;wrap_content&quot;        </div><div class="line">    android:singleLine=&quot;true&quot;        </div><div class="line">    android:layout_gravity=&quot;center_vertical&quot;    /&gt;   </div><div class="line">&lt;/LinearLayout&gt;</div></pre></td></tr></table></figure>
-<p>就是一个LinearLayout布局</p>
+        <h1 id="花束直播点赞效果"><a href="#花束直播点赞效果" class="headerlink" title="花束直播点赞效果"></a>花束直播点赞效果</h1><p>​                                    <strong>先上效果图，敬天！</strong></p>
+<p><img src="https://ws1.sinaimg.cn/large/73754f6dly1fjhrrtfikkg20d90m4b2a.jpg" alt="直播点赞"></p>
+<p>​    宅男们应该都用过直播软件吧，给主播点赞的事应该也没少干。满屏飞舞的心就充分表达了你对女主播的爱意，右手速度七十迈来思考人生。</p>
+<p>​    今天我们就自己来实现一个点赞效果，来解放你的双手</p>
+<p><img src="https://ws1.sinaimg.cn/large/73754f6dgy1fjhs1s5pfhj20dw0dwq34.jpg" alt=""></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>​    我们看了效果之后，其实效果也简单。就是一个图片从底部中间位置开始以某个路线往顶部移动，同时在往上移动的同时有一个透明度的变化。透明度的变化都比较容易实现，主要是这个路线是如何来实现？</p>
+<p>​    我们大体可以看出是类似于S线的。那么实现就有两种，一是以波浪线的实现，按照既定路线运动。二是以贝塞尔曲线，按照既定路线运动。那么都是使用哪一种呢？我们在看图片在向上移动的时候并不是旋转对称的，我们指定波浪纹是旋转对称的。那么我们就放弃第一种，而采用第二种，以贝塞尔曲线来实现。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>​    分析完之后，我们就动手来码出来，也不枉费死去的脑细胞。</p>
+<h3 id="第一步-加载心形图片"><a href="#第一步-加载心形图片" class="headerlink" title="第一步 加载心形图片"></a>第一步 加载心形图片</h3><p>​    在本文章中，我们采用继承自RelativeLayout来实现。</p>
+<p>​    加载心形图片就是在RelativeLayout中创建一个ImageView并将这个ImageView放置在父布局底部居中的位置。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ImageView lovely = <span class="keyword">new</span> ImageView(getContext());</div><div class="line"><span class="comment">//随机设置图片资源</span></div><div class="line">lovely.setImageResource(mImagesRes[mRandom.nextInt(mImagesRes.length)]);</div><div class="line"></div><div class="line"><span class="comment">//设置图片在底部中心位置</span></div><div class="line">RelativeLayout.LayoutParams params = <span class="keyword">new</span> LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT</div><div class="line">      , ViewGroup.LayoutParams.WRAP_CONTENT);</div><div class="line">params.addRule(ALIGN_PARENT_BOTTOM);</div><div class="line">params.addRule(CENTER_HORIZONTAL);</div><div class="line">lovely.setLayoutParams(params);</div><div class="line">addView(lovely);</div></pre></td></tr></table></figure>
+<p>这个没什么难度，主要是采用随机数的形式来获取资源图片。不然每次加载都是同一个图片那就单调了。</p>
+<p>我们再看一下，在这个图片加载进来的时候是有一个动画效果的，就是从小变大，从透明变动不透明，这里我们采用属性动画来实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ObjectAnimator alphaA = ObjectAnimator.ofFloat(imageView, <span class="string">"alpha"</span>, <span class="number">0.3f</span>, <span class="number">1.0f</span>);</div><div class="line">ObjectAnimator scaleX = ObjectAnimator.ofFloat(imageView, <span class="string">"scaleX"</span>, <span class="number">0.3f</span>, <span class="number">1.0f</span>);</div><div class="line">ObjectAnimator scaleY = ObjectAnimator.ofFloat(imageView, <span class="string">"scaleY"</span>, <span class="number">0.3f</span>, <span class="number">1.0f</span>);</div></pre></td></tr></table></figure>
+<p>只要将这个三个动画加载到ImageView上那么就有了我们上面说的效果了。</p>
+<p><img src="https://ws1.sinaimg.cn/large/73754f6dly1fjhrrrhsytg20dc0m70xn.jpg" alt=""></p>
+<p>这样我们第一步就算完成了。</p>
+<h3 id="第二步-实现贝塞尔估值器"><a href="#第二步-实现贝塞尔估值器" class="headerlink" title="第二步 实现贝塞尔估值器"></a>第二步 实现贝塞尔估值器</h3><p>​    图片加载进来之后我们现在需要做的就是让图片动起来，向上移动以实现我们最终的效果。这一步才是我们的重点。</p>
+<p>​    我们画个图来分析一下</p>
+<p>​    <img src="https://ws1.sinaimg.cn/large/73754f6dgy1fjhrrcp6qkj20bb0ggmxi.jpg" alt="路径分析图"></p>
+<p>心形从下往上运动的大体路线就是这样。这也是标准的路线，这里我们可以看到只有P0是固定的，其他P1,P2,P3都不是固定的。如果都固定了，那么线路就死了，就不会出现满屏幕飞心的效果了。这其实就是一个三级贝塞尔曲线了。</p>
+<p>三级贝塞尔曲线的公式我们可以随便一百度就出来了。</p>
+<p><img src="https://ws1.sinaimg.cn/large/73754f6dgy1fjhrrd7zfnj20cp02c0sw.jpg" alt=""></p>
+<p>这就是公式了，你如果问公式需不需要理解，那么告诉你，不需要！你不需要理解 ，会用就行。</p>
+<p>我们知道了公式，下一步我们就要来实现这个路径了，这就用到了Android中的估值器TypeEvaluator了。</p>
+<p>关于估值器是什么，有兴趣的同学可以自己去深究，这里我就不详细说明了。</p>
+<blockquote>
+<p>估值器就是为了从起始能平滑过渡的过渡到结束的一个东西</p>
+</blockquote>
+<p>​    <strong>查看估值器的源码非常简单，但是要真正的了解估值器和差值器，那么还是需要拿出时间来进行研究的。</strong></p>
+<p>我们重写TypeEvaluator，来实现evaluate方法。</p>
+<p>​    evaluate方法的后面两个参数，就是路线的开始点和结束点。在这里就是P0和P3。有了开始点和结束点，就剩下两个控制点P1和P2了，因为我们从公式中可以看到计算这个曲线上的值是需要这个四个点的，缺一不行。那么控制点也简单，我们采用从构造函数的方式传入，这样我们的四个点就都有了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> PointF point1,point2;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">LovelyType</span><span class="params">(PointF point1, PointF point2)</span> </span>&#123;</div><div class="line">   <span class="keyword">this</span>.point1 = point1;</div><div class="line">   <span class="keyword">this</span>.point2 = point2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>套公式吧。</p>
+<blockquote>
+<p>这个时候我们发现公式还缺一个t啊，怎么办，New一个？</p>
+<p>不需要，我们可以看到evaluate方法中的第一个参数没有用，而这个参数的范围也是0到1和公式中的t的范围是一样的。那么第一个参数就可以作为我们公式的t</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> PointF <span class="title">evaluate</span><span class="params">(<span class="keyword">float</span> t, PointF point0, PointF point3)</span></span>&#123;&#125;</div></pre></td></tr></table></figure>
+<p>这样我们公式中的参数都有了，那么套吧。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> PointF <span class="title">evaluate</span><span class="params">(<span class="keyword">float</span> t, PointF point0, PointF point3)</span> </span>&#123;</div><div class="line"></div><div class="line">   PointF pointF = <span class="keyword">new</span> PointF();</div><div class="line"></div><div class="line">   pointF.x = point0.x*(<span class="number">1</span>-t)*(<span class="number">1</span>-t)*(<span class="number">1</span>-t)</div><div class="line">            + <span class="number">3</span>*point1.x*t*(<span class="number">1</span>-t)*(<span class="number">1</span>-t)</div><div class="line">            + <span class="number">3</span>*point2.x*t*t*(<span class="number">1</span>-t)</div><div class="line">            + point3.x*t*t*t;</div><div class="line"></div><div class="line">   pointF.y = point0.y*(<span class="number">1</span>-t)*(<span class="number">1</span>-t)*(<span class="number">1</span>-t)</div><div class="line">         + <span class="number">3</span>*point1.y*t*(<span class="number">1</span>-t)*(<span class="number">1</span>-t)</div><div class="line">         + <span class="number">3</span>*point2.y*t*t*(<span class="number">1</span>-t)</div><div class="line">         + point3.y*t*t*t;</div><div class="line"></div><div class="line">   <span class="keyword">return</span> pointF;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样我们的估值器就完成了，是不是也不难。</p>
+<h3 id="第三步-确定控制点和起始点"><a href="#第三步-确定控制点和起始点" class="headerlink" title="第三步 确定控制点和起始点"></a>第三步 确定控制点和起始点</h3><p>​    我们内部的估值器已经写出来了，那么我们只需要将这个四个点传进去就行了。那么这四个点怎么去确定呢。我们可以看到P0是固定的，XY坐标分别是屏幕宽的一半和屏幕的高减去imageView高的一半。这个比较容易。</p>
+<p>​    但是P3结束点呢？我们刚才分析了，如果P3也固定了，那么线路就死了，就不要看了。但是P3的Y坐标是固定的，就是0。那X呢？我们就让它在X轴上就行了，不需要固定，采用随机数的方式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mRandom.nextInt(mWidth)<span class="comment">//这就是我们P3 X坐标的点</span></div></pre></td></tr></table></figure>
+<p>​    那么控制点呢，P1,P2呢，其实P1,P2的X坐标是和P3一样的，就是他们可以随便在X轴移动，但是对于Y轴我们是有限制的，就是P2要在P1的上面。反应到屏幕坐标上面就是P1的Y坐标要大于P2的Y坐标。这个怎么实现？简单方法，就是让P2的Y坐标随便在屏幕的上半部分移动，P1的Y坐标随便在屏幕的下半部分移动。这样就可以保证P1的Y坐标要大于P2的Y坐标了。怎么样，好实现么？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这个就是我们获取的P1，P2了</span></div><div class="line"><span class="keyword">new</span> PointF(mRandom.nextInt(mWidth)-mImgWidth,mRandom.nextInt(mHeight/<span class="number">2</span>));</div><div class="line"><span class="keyword">new</span> PointF(mRandom.nextInt(mWidth)-mImgWidth,mRandom.nextInt(mHeight/<span class="number">2</span>)+ mHeight/<span class="number">2</span>);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在这里我们分析的是ImageView的中心点，但是运行后发现有偏移，那么我们就可以知道估值器不是以中心点了，查资料也会发现是以左上角的坐标开始的。所以在实际中我们要适时调整宽度的控制。</p>
+<p>所以在实际代码中我们要减去mImgWidth，才是我们想要的效果。</p>
+</blockquote>
+<h3 id="第四步-实现路径动画"><a href="#第四步-实现路径动画" class="headerlink" title="第四步 实现路径动画"></a>第四步 实现路径动画</h3><p>​    有了估值器，有了图片，四个点也已经确定那么剩下的就简单了。将估值器运用到我们创建的ImageView上面就可以了。还是属性动画，但是这个动画是要在ImageView的加载动画之后才执行。这里我们用AnimatorSet来控制执行。</p>
+<p>​    AnimatorSet的playSequentially方法就是按顺序执行，正是我们需要的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setAnimaior</span><span class="params">(<span class="keyword">final</span> ImageView imageView)</span> </span>&#123;</div><div class="line">   <span class="comment">//加载动画</span></div><div class="line">   AnimatorSet allSet = <span class="keyword">new</span> AnimatorSet();</div><div class="line"></div><div class="line">   AnimatorSet loadSet = <span class="keyword">new</span> AnimatorSet();</div><div class="line"></div><div class="line">   ObjectAnimator alphaA = ObjectAnimator.ofFloat(imageView, <span class="string">"alpha"</span>, <span class="number">0.3f</span>, <span class="number">1.0f</span>);</div><div class="line">   ObjectAnimator scaleX = ObjectAnimator.ofFloat(imageView, <span class="string">"scaleX"</span>, <span class="number">0.3f</span>, <span class="number">1.0f</span>);</div><div class="line">   ObjectAnimator scaleY = ObjectAnimator.ofFloat(imageView, <span class="string">"scaleY"</span>, <span class="number">0.3f</span>, <span class="number">1.0f</span>);</div><div class="line">   loadSet.playTogether(alphaA, scaleX, scaleY);</div><div class="line">   loadSet.setDuration(<span class="number">350</span>);</div><div class="line"></div><div class="line">   allSet.playSequentially(loadSet, getBizerAnimator(imageView));</div><div class="line">   allSet.addListener(<span class="keyword">new</span> AnimatorListenerAdapter() &#123;</div><div class="line">      <span class="meta">@Override</span></div><div class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationEnd</span><span class="params">(Animator animation)</span> </span>&#123;</div><div class="line">         removeView(imageView);</div><div class="line">      &#125;</div><div class="line">   &#125;);</div><div class="line">   allSet.start();</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">private</span> Animator <span class="title">getBizerAnimator</span><span class="params">(<span class="keyword">final</span> ImageView imageView)</span> </span>&#123;</div><div class="line"></div><div class="line">		PointF point0 = <span class="keyword">new</span> PointF(mWidth/<span class="number">2</span>-mImgWidth/<span class="number">2</span>,mHeight-mImgHeight);</div><div class="line">		PointF point1 = getPointY(<span class="number">0</span>);</div><div class="line">		PointF point2 = getPointY(<span class="number">1</span>);</div><div class="line">		PointF point3 = <span class="keyword">new</span> PointF(mRandom.nextInt(mWidth)-mImgWidth,<span class="number">0</span>);</div><div class="line"></div><div class="line">		<span class="comment">//运动点以左上角为标准，不是以中心点</span></div><div class="line">		LovelyType type = <span class="keyword">new</span> LovelyType(point1,point2);</div><div class="line">		ValueAnimator animator = ObjectAnimator.ofObject(type,point0,point3);</div><div class="line">		animator.setDuration(<span class="number">4000</span>);</div><div class="line">		<span class="comment">//差值器</span></div><div class="line">		animator.setInterpolator(interpolators[mRandom.nextInt(interpolators.length)]);</div><div class="line">		animator.addUpdateListener(<span class="keyword">new</span> ValueAnimator.AnimatorUpdateListener() &#123;</div><div class="line">			<span class="meta">@Override</span></div><div class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onAnimationUpdate</span><span class="params">(ValueAnimator animation)</span> </span>&#123;</div><div class="line">				PointF p = (PointF) animation.getAnimatedValue();</div><div class="line">				imageView.setX(p.x);</div><div class="line">				imageView.setY(p.y);</div><div class="line">				<span class="comment">//透明度 getAnimatedFraction获取的就是t</span></div><div class="line">				<span class="keyword">float</span> t = animation.getAnimatedFraction();</div><div class="line">				imageView.setAlpha(<span class="number">1</span>-t + <span class="number">0.2f</span>);</div><div class="line">			&#125;</div><div class="line">		&#125;);</div><div class="line"></div><div class="line">		<span class="keyword">return</span> animator;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> PointF <span class="title">getPointY</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span>  <span class="keyword">new</span> PointF(mRandom.nextInt(mWidth)-mImgWidth,mRandom.nextInt(mHeight/<span class="number">2</span>)+ index*mHeight/<span class="number">2</span>);</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<p>这样基本上就算完成了。</p>
+<p>到这里，你就可以去锻炼你的手速了。拜拜！</p>
+<p><img src="https://ws1.sinaimg.cn/large/73754f6dgy1fjhuzruww7j208b08c748.jpg" alt=""></p>
 
     
 
@@ -506,21 +553,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/08/22/Looper,Handler,Message源码分析/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2017/08/21/Activity-Launch-Process/" id="post_nav-older" class="next-content">
+        <a href="/2017/09/08/仿QQ消息拖拽,让你的View动起来/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
